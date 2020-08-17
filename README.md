@@ -11,7 +11,8 @@
 ### :rocket: Instalação
 * Execute o projeto utilizando [Eclipse](https://www.eclipse.org/downloads/packages/release/2020-06/r/eclipse-ide-enterprise-java-developers).
 * Utilize servidor web [TomCat 9](https://tomcat.apache.org/download-70.cgi) para execução.
-* Não é necessário instalar banco de dados.
+* Não é necessário instalar banco de dados
+* Necessária execução do [Repositório da API REST Gestão](https://github.com/hernanbs/gestao-patrimonio-server)
 
 ### :art: Layout
 
