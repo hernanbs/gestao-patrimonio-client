@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="template.xhtml">
+
+    <ui:define name="css">
+    	<h:outputStylesheet library="cssStyles" name="add-marca.css" />
+    </ui:define>
+    <ui:define name="javascript"></ui:define>
+    <ui:define name="body">
+		<fieldset id="add-panel" class="card" >
+			<div class="header-add-panel">
+				<h2>Cadastrar uma nova marca</h2>
+			</div>    
+			<h:form class="body-add-panel">
+				<h:outputLabel for="input-nome" value="Nome: " />
+				<h:inputText id="input-nome" styleClass="form-control" value="#{marcaBean.nome}" required="true"  />
+				<h:commandButton styleClass="btn btn-outline-primary" value="Adicionar" action="#{marcaBean.adicionarMarca()}"/>
+			</h:form>
+		</fieldset>	
+    </ui:define>
+    
+    
+</ui:decorate>
+

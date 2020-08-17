@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+   	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="template.xhtml">
+    <ui:define name="css">
+    	<h:outputStylesheet library="cssStyles" name="search-page.css" />
+    </ui:define>
+    <ui:define name="javascript"></ui:define>
+	<ui:define name="body">
+		<div id="container">
+			<div class="top-cards">
+				<fieldset id="search-marca-panel" class="card" >
+					<div class="header-search-panel">
+						<h2>Pesquisar Marcas</h2>
+					</div>
+					<div class="body-panel">
+						<h:outputLabel for="input-id" value="ID da marca pesquisada: " />
+						<h:form class="body-search-panel">
+							<h:inputText id="input-id" styleClass="form-control" value="#{marcaBean.id}" required="true"  />
+							<h:commandButton styleClass="btn btn-outline-primary" value="Adicionar" action="#{marcaBean.pesquisarMarca()}"/>
+						</h:form>
+						<fieldset class="show-result card" >
+							<h:outputLabel for="txt-idmarca" value="ID: " />
+							<h:outputText id="txt-idmarca" styleClass="form-control readonly" value="#{marcaBean.id}"   />	
+							<h:outputLabel for="txt-nome" value="Nome: " />
+							<h:outputText id="txt-nome" styleClass="form-control readonly" value="#{marcaBean.nome}"  />				
+						</fieldset>
+					</div>
+				</fieldset>
+				<fieldset id="search-patr-panel" class="card" >
+					<div class="header-search-panel">
+						<h2>Pesquisar Patrimônio</h2>
+					</div>
+					<div class="body-panel">
+						<h:outputLabel for="input-patr-id" value="ID do Patrimonio pesquisada: " />
+						<h:form class="body-search-panel">
+							<h:inputText id="input-patr-id" styleClass="form-control" value="#{patrimonioBean.id}" required="true"  />
+							<h:commandButton styleClass="btn btn-outline-primary" value="Adicionar" action="#{patrimonioBean.pesquisarPatrimonio()}"/>
+						</h:form>
+						<fieldset class="show-result card" >
+							<h:outputLabel for="txt-patr-id" value="ID: " />
+							<h:outputText id="txt-patr-id" styleClass="form-control readonly" value="#{patrimonioBean.id}"  />	
+							<h:outputLabel for="txt-patr-idmarca" value="ID Marca: " />
+							<h:outputText id="txt-patr-idmarca" styleClass="form-control readonly" value="#{patrimonioBean.idMarca}"   />	
+							<h:outputLabel for="txt-patr-nome" value="Nome: " />
+							<h:outputText id="txt-patr-nome" styleClass="form-control readonly" value="#{patrimonioBean.nome}"  />		
+							<h:outputLabel for="txt-patr-desc" value="Descrição: " />
+							<h:outputText id="txt-patr-desc" styleClass="form-control readonly" value="#{patrimonioBean.descricao}"  />	
+							<h:outputLabel for="txt-patr-numtombo" value="Número de Tombo: " />
+							<h:outputText id="txt-patr-numtombo" styleClass="form-control readonly" value="#{patrimonioBean.numTombo}"  />			
+						</fieldset>
+					</div>
+				</fieldset>
+			</div>
+			<fieldset id="search-table-panel" class="card" >
+				<div class="header-search-panel">
+					<h2>Pesquisar Patrimônios por marca</h2>
+				</div>
+				<div class="body-panel">
+					<h:outputLabel for="input-search-id" value="ID da marca pesquisada: " />
+					<h:form class="body-search-panel">
+						<h:inputText id="input-search-id" styleClass="form-control" value="#{patrimonioBean.idMarca}" required="true"  />
+						<h:commandLink styleClass="btn btn-outline-primary" value="Adicionar" action="#{patrimonioBean.getPatrimonioByMarca()}" />
+					</h:form>
+					<fieldset class="show-result card" >
+						<h:dataTable id="table-patr" value ="#{patrimonioBean.listaPesquisada}" var="patr" class="table tablePatrimonio">
+							<h:column>
+								<f:facet name="header">ID</f:facet>
+								<h:outputText value="#{patr.id}"/>
+							</h:column>
+							<h:column>
+								<f:facet name = "header">Id Marca</f:facet>
+								<h:outputText value="#{patr.idMarca}"/>
+							</h:column>
+							<h:column>
+								<f:facet name = "header">Nome</f:facet>
+								<h:outputText value="#{patr.nome}"/>
+							</h:column>
+							<h:column>
+								<f:facet name = "header">Descrição</f:facet>
+								<h:outputText value="#{patr.descricao}"/>
+							</h:column>
+							<h:column>
+								<f:facet name = "header">Número de tombo</f:facet>
+								<h:outputText value="#{patr.numTombo}"/>
+							</h:column>
+						</h:dataTable>
+					</fieldset>
+				</div>
+			</fieldset>
+		</div>
+	</ui:define>
+</ui:decorate>

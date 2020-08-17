@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Gestão</title>
+	<meta name="viewport" http-equiv="Content-Type"  content="width=device-width, initial-scale=1.0" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="cssStyles" name="lista-patrimonios.css" />
+	<h:outputStylesheet library="cssStyles" name="template.css" />
+</h:head>
+<h:body>
+	<header class="navbar navbar-lg navbar-light bg-header py-4">
+		<h:link class="nav-brand" style="color: white;" value="Gestão" outcome="/index"/>
+		<div class="form-inline">
+			<h:link class="nav-link" style="color: white;" value="Marca" outcome="pages/lista-marcas"/>
+			<h:link class="nav-link" style="color: white;" value="Patrimonio" outcome="pages/lista-patrimonios"/>
+			<h:link class="nav-link" style="color: white;" value="Pesquisar" outcome="pages/search-page"/>
+			<h:link class="nav-link" style="color: white;" value="Voltar" outcome="index"/>
+		</div>
+	</header>
+	<ui:insert name="body"></ui:insert>
+	<h:outputScript name="bootstrap.min.js" library="js"></h:outputScript>
+</h:body>
+</html>

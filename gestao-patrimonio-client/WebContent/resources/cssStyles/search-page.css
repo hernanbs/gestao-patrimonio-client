@@ -1,0 +1,41 @@
+@charset "ISO-8859-1";
+
+.bg-header {
+	background: #af00e8;
+}
+
+#container {
+	padding: 0.5rem;
+	text-align: center;
+}
+.top-cards {
+	display: flex;
+}
+
+.header-search-panel {
+	text-align: center;
+}
+#search-marca-panel {
+	width: 50%;
+	margin: 0.5rem;
+    padding: 0.5rem;
+}
+#search-patr-panel {
+	width: 50%;
+	margin: 0.5rem;
+    padding: 0.5rem;
+}
+#search-table-panel {
+	margin: 0.5rem;
+   padding: 0.5rem;
+}
+
+.body-search-panel {
+	margin-bottom: 3.5vh;
+	display: inline-flex;
+    width: max-content;
+}
+
+fieldset.show-result.card {
+	padding: 1rem;
+}

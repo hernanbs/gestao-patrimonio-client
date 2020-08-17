@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+
+.bg-header {
+	background: #009688;
+}
+
+#edit-panel {
+	padding: 1.6rem;
+	margin: 5vw auto;
+	width: fit-content;
+}
+
+.header-edit-panel {
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.body-edit-panel input {
+	margin-bottom: 2rem;
+	
+}

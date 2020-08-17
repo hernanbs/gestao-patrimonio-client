@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="template.xhtml">
+
+    <ui:define name="css">
+    	<h:outputStylesheet library="cssStyles" name="edit-patrimonio.css" />
+    </ui:define>
+    <ui:define name="javascript"></ui:define>
+    <ui:define name="body">
+		<fieldset id="edit-panel-patr" class="card" >
+			<div class="header-edit-panel">
+				<h2>Editando patrimônio #{patrimonioBean.nome}</h2>
+			</div>    
+			<h:form class="body-edit-panel">
+				<h:outputLabel for="input-id-patr" value="ID: " />
+				<h:inputText id="input-id-patr" styleClass="form-control" value="#{patrimonioBean.id}" disabled="true" required="true" />
+				<h:outputLabel for="input-idMarca-patr" value="ID Marca: " />
+				<h:inputText id="input-idMarca-patr" styleClass="form-control" value="#{patrimonioBean.idMarca}" required="true" />
+				<h:outputLabel for="input-nome-patr" value="Nome: " />
+				<h:inputText id="input-nome-patr" styleClass="form-control" value="#{patrimonioBean.nome}" required="true" />
+				<h:outputLabel for="input-desc-patr" value="Descrição: " />
+				<h:inputText id="input-desc-patr" styleClass="form-control" value="#{patrimonioBean.descricao}" required="true" />
+				<h:outputLabel for="input-numtombo-patr" value="Numero de Tombo: " />
+				<h:inputText id="input-numtombo-patr" styleClass="form-control" value="#{patrimonioBean.numTombo}" disabled="true" required="true" />
+				<h:commandButton styleClass="btn btn-outline-primary" value="Editar" action="#{patrimonioBean.editarPatrimonio()}"/>
+			</h:form>
+		</fieldset>	
+    </ui:define>
+</ui:decorate>
+
