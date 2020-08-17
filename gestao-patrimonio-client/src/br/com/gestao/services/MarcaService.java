@@ -23,7 +23,7 @@ public class MarcaService {
 	 * 	Objetivo: Pesquisar marca por id
 	 * */
 	public static Marca getMarcaById(int idMarca) throws Exception   {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas/get/" + idMarca;
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas/" + idMarca;
 		URL obj = new URL(url);
 		HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 		conn.setRequestMethod("GET");
@@ -45,7 +45,7 @@ public class MarcaService {
 	 * Objetivo: Listar Marcas
 	 * */
 	public static List<Marca> listMarcas() throws Exception   {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas/list";
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas";
 		URL obj = new URL(url);
 		HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 		conn.setRequestMethod("GET");
@@ -67,7 +67,7 @@ public class MarcaService {
 	 * Objetivo: Adicionar uma Marca
 	 * */
 	public static void addMarca (Marca marca) throws Exception {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas/add";
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas";
 		URL obj = new URL(url);
 		
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -93,7 +93,7 @@ public class MarcaService {
 	 * Objetivo: Editar uma Marca
 	 * */
 	public static void editMarca (Marca marca) throws Exception {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas/edit/" + marca.getId();
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas/" + marca.getId();
 		URL obj = new URL(url);
 		
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -115,7 +115,7 @@ public class MarcaService {
 	}
 	
 	public static void deleteMarca (Marca marca) throws Exception {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas/delete/" + marca.getId();
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/marcas/" + marca.getId();
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("DELETE");

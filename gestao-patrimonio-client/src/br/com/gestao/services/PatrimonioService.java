@@ -18,7 +18,7 @@ import br.com.gestao.entity.Patrimonio;
 public class PatrimonioService {
 	
 	public static Patrimonio getPatrimonioById(int idPatrimonio) throws Exception   {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/get/" + idPatrimonio;
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/" + idPatrimonio;
 		URL obj = new URL(url);
 		HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 		conn.setRequestMethod("GET");
@@ -38,7 +38,7 @@ public class PatrimonioService {
 	}
 	
 	public static List<Patrimonio> listPatrimonios() throws Exception   {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/list";
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios";
 		URL obj = new URL(url);
 		HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 		conn.setRequestMethod("GET");
@@ -57,7 +57,7 @@ public class PatrimonioService {
 	}
 	
 	public static void addPatrimonio (Patrimonio patrimonio) throws Exception {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/add";
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios";
 		URL obj = new URL(url);
 		
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -83,7 +83,7 @@ public class PatrimonioService {
 	}
 	
 	public static void editPatrimonio (Patrimonio patrimonio) throws Exception {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/edit/" + patrimonio.getId();
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/" + patrimonio.getId();
 		URL obj = new URL(url);
 		
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -106,7 +106,7 @@ public class PatrimonioService {
 		String jsonDeResposta = new Scanner(con.getInputStream(),"utf-8").nextLine(); 
 	}
 	public static void deletePatrimonio (Patrimonio patrimonio) throws Exception {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/delete/" + patrimonio.getId();
+		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/" + patrimonio.getId();
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("DELETE");
