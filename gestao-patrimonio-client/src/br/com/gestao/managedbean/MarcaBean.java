@@ -27,10 +27,6 @@ public class MarcaBean {
 	@PostConstruct
     public void init(){
     	this.setMarcaSelecionada(new Marca());
-    	Marca a = this.getMarcaById(3);
-    	this.setId(a.getId());
-    	this.setNome(a.getNome());
-    	
     	this.loadTableMarcas();
     	
     }

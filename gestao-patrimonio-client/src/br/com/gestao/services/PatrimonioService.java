@@ -1,121 +1,74 @@
 package br.com.gestao.services;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
+import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
-import br.com.gestao.entity.Marca;
+import br.com.gestao.connectionHttp.ConnectionHttpRestServer;
 import br.com.gestao.entity.Patrimonio;
 
 public class PatrimonioService {
+	private static final String REST_URI = "http://localhost:8080/projeto-gestao-patrimonio/rest/";
+	private static final String REST_ENTITY_PATRIMONIO = "patrimonios/";
+	private static final String REST_ENDPOINT = REST_URI + REST_ENTITY_PATRIMONIO;
 	
-	public static Patrimonio getPatrimonioById(int idPatrimonio) throws Exception   {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/" + idPatrimonio;
-		URL obj = new URL(url);
-		HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
-		conn.setRequestMethod("GET");
-		int responseCode = conn.getResponseCode();
-		
-		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		String inputInline;
-		StringBuffer response = new StringBuffer();
-		while((inputInline= in.readLine()) != null) {
-			response.append(inputInline);
-		}
-		in.close();
-		
-		Patrimonio patrimonio = new ObjectMapper().readValue(response.toString(), Patrimonio.class);
-
+	/* 
+	 * 	Objetivo: Pesquisar patrimônio por id
+	 * */
+	public static Patrimonio getPatrimonioById(int idPatrimonio) throws JsonParseException, JsonMappingException, IOException {
+		String url = REST_ENDPOINT + idPatrimonio;
+		String jsonDeResposta = ConnectionHttpRestServer.connectionGET(url, "application/json;charset=utf-8");
+		Patrimonio patrimonio = new ObjectMapper().readValue(jsonDeResposta.toString(), Patrimonio.class);
 		return patrimonio;
 	}
 	
-	public static List<Patrimonio> listPatrimonios() throws Exception   {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios";
-		URL obj = new URL(url);
-		HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
-		conn.setRequestMethod("GET");
-		int responseCode = conn.getResponseCode();
-		
-		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		String inputInline;
-		StringBuffer response = new StringBuffer();
-		while((inputInline= in.readLine()) != null) {
-			response.append(inputInline);
-		}
-		in.close();
-		List<Patrimonio> arrayPatrimonios = new ObjectMapper().readValue(response.toString(), List.class);
-		System.out.println(arrayPatrimonios);
-		return arrayPatrimonios;		
+	/*
+	 * Objetivo: Listar Patrimônios
+	 * */
+	public static List<Patrimonio> listPatrimonios() throws JsonParseException, JsonMappingException, IOException {
+		String url = REST_ENDPOINT;
+		String jsonDeResposta = ConnectionHttpRestServer.connectionGET(url, "application/json;charset=utf-8");
+		List<Patrimonio> arrayPatrimonios = new ObjectMapper().readValue(jsonDeResposta.toString(), List.class);
+		return arrayPatrimonios;
 	}
 	
-	public static void addPatrimonio (Patrimonio patrimonio) throws Exception {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios";
-		URL obj = new URL(url);
-		
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		con.setRequestMethod("POST");
-		
-		con.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-		con.setRequestProperty("Accept", "application/json;charset=utf-8");
-		con.setDoOutput(true);
-		
-		String jsonInputString = "{ \"nome\": \"" + patrimonio.getNome() + "\","
+	/*
+	 * Objetivo: Adicionar um Patrimônio
+	 * */
+	public static String addPatrimonio(Patrimonio patrimonio) throws JsonParseException, JsonMappingException, IOException {
+		String url = REST_ENDPOINT;
+		String jsonBodyString = "{ \"nome\": \"" + patrimonio.getNome() + "\","
+								+ "\"idMarca\": \""+ patrimonio.getIdMarca() +"\","
+								+ "\"descricao\": \"" + patrimonio.getDescricao() +"\" }";
+		String jsonDeResposta = ConnectionHttpRestServer.connectionPOST(url, jsonBodyString);
+		return jsonDeResposta.toString();
+	}
+
+	/*
+	 * Objetivo: Editar um Patrimônio
+	 * */
+	public static String editPatrimonio (Patrimonio patrimonio)  {
+		String url = REST_ENDPOINT + patrimonio.getId();
+		String jsonBodyString = "{ \"nome\": \"" + patrimonio.getNome() + "\","
 								+ "\"idMarca\": \""+ patrimonio.getIdMarca() +"\","
 								+ "\"descricao\": \"" + patrimonio.getDescricao() +"\" }";
 		
-		JsonObject jsonObject = new JsonParser().parse(jsonInputString).getAsJsonObject();
-		
-		System.out.println("Json para envio === " + jsonObject.toString());
-		
-		PrintStream printStream = new PrintStream(con.getOutputStream());
-		printStream.println(jsonObject);
-		con.connect();
-
-		String jsonDeResposta = new Scanner(con.getInputStream(),"utf-8").nextLine(); 
+		String jsonDeResposta = ConnectionHttpRestServer.connectionPUT(url, jsonBodyString);
+		return jsonDeResposta.toString();
 	}
-	
-	public static void editPatrimonio (Patrimonio patrimonio) throws Exception {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/" + patrimonio.getId();
-		URL obj = new URL(url);
-		
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		con.setRequestMethod("PUT");
-		
-		con.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-		con.setRequestProperty("Accept", "application/json;charset=utf-8");
-		con.setDoOutput(true);
-		
-		String jsonInputString = "{ \"nome\": \"" + patrimonio.getNome() + "\","
-				+ "\"idMarca\": \""+ patrimonio.getIdMarca() +"\","
-				+ "\"descricao\": \"" + patrimonio.getDescricao() +"\" }";
-		
-		JsonObject jsonObject = new JsonParser().parse(jsonInputString).getAsJsonObject();
-		
-		PrintStream printStream = new PrintStream(con.getOutputStream());
-		printStream.println(jsonObject);
-		con.connect();
 
-		String jsonDeResposta = new Scanner(con.getInputStream(),"utf-8").nextLine(); 
-	}
-	public static void deletePatrimonio (Patrimonio patrimonio) throws Exception {
-		String url = "http://localhost:8080/projeto-gestao-patrimonio/rest/patrimonios/" + patrimonio.getId();
-		URL obj = new URL(url);
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		con.setRequestMethod("DELETE");
-		
-		con.setRequestProperty("Content-Type", "text/plain");
-		con.setRequestProperty("Accept", "application/json;charset=utf-8");
-		con.connect();
-
-		String jsonDeResposta = new Scanner(con.getInputStream(),"utf-8").nextLine(); 
+	/*
+	 * Objetivo: Remover um Patrimônio
+	 * */
+	public static String deletePatrimonio (Patrimonio patrimonio)  {
+		String url = REST_ENDPOINT + patrimonio.getId();
+		String jsonDeResposta = ConnectionHttpRestServer.connectionDELETE(url, "application/json;charset=utf-8");
+		return jsonDeResposta.toString();
 	}
 	
 }
