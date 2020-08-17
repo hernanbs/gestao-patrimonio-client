@@ -17,7 +17,6 @@
 
 ##### Web
 
-
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
   <img alt="Tela de listar marca" title="Tela de listar marca" src="./assets/marcas-lista.PNG" width="400px">
   <img alt="Tela de adicionar marca" title="Tela de adicionar marca" src="./assets/marca-add.PNG" width="400px">
