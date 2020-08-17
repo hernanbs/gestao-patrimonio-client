@@ -14,3 +14,16 @@
 * Não é necessário instalar banco de dados.
 
 ### :art: Layout
+
+##### Web
+
+
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="Tela de listar marca" title="Tela de listar marca" src="./assets/marcas-lista.PNG" width="400px">
+  <img alt="Tela de adicionar marca" title="Tela de adicionar marca" src="./assets/marca-add.PNG" width="400px">
+  <img alt="Tela de editar marca" title="Tela de editar marca" src="./assets/marca-edit.PNG" width="400px">
+  <img alt="Tela de listar patrimônio" title="Tela de listar patrimônio" src="./assets/patr-lista.PNG" width="400px">
+  <img alt="Tela de adicionar patrimônio" title="Tela de adicionar patrimônio" src="./assets/patr-add.PNG" width="400px">
+  <img alt="Tela de editar patrimônio" title="Tela de editar patrimônio" src="./assets/patr-edit.PNG" width="300px">
+  <img alt="Tela de pesquisa" title="Tela de pesquisa" src="./assets/pesquisa.PNG" width="400px">
+</p>
