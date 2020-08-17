@@ -27,3 +27,5 @@
   <img alt="Tela de editar patrimônio" title="Tela de editar patrimônio" src="./assets/patr-edit.PNG" width="300px">
   <img alt="Tela de pesquisa" title="Tela de pesquisa" src="./assets/pesquisa.PNG" width="400px">
 </p>
+
+---
