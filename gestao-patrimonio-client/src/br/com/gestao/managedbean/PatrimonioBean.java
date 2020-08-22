@@ -6,11 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.google.gson.JsonObject;
-
-import br.com.gestao.entity.Marca;
 import br.com.gestao.entity.Patrimonio;
-import br.com.gestao.services.MarcaService;
 import br.com.gestao.services.PatrimonioService;
 import br.com.gestao.services.UtilService;
 

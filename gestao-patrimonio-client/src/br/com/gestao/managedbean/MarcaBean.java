@@ -1,18 +1,17 @@
 package br.com.gestao.managedbean;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.component.html.HtmlDataTable;
+
+import javax.servlet.http.Part;
 
 import br.com.gestao.entity.Marca;
-import br.com.gestao.entity.Patrimonio;
 import br.com.gestao.services.MarcaService;
-
-
 
 
 @ManagedBean (name = "marcaBean")
@@ -23,6 +22,7 @@ public class MarcaBean {
 	String nome;
 	List<Marca> listaMarca;
 	Marca marcaSelecionada;
+	Part filePDF;
 
 	@PostConstruct
     public void init(){
@@ -31,7 +31,14 @@ public class MarcaBean {
     	
     }
 	
+	
 /** Getters e Setters */	
+	public Part getFilePDF() {
+		return filePDF;
+	}
+	public void setFilePDF(Part filePDF) {
+		this.filePDF = filePDF;
+	}
 	public Marca getMarcaSelecionada() {
 		return marcaSelecionada;
 	}
@@ -161,5 +168,21 @@ public class MarcaBean {
     	this.setId(0);
     	this.setNome("");
 	}
+	
+	public void uploadFile() {
+		try(InputStream fileInputStream = this.getFilePDF().getInputStream() ) {
+			MarcaService.uploadMarca(this.getFilePDF());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void downloadFile() {
+		try {
+			MarcaService.downloadMarca("Desafio SOS Tecnologia.pdf", "C:\\Users\\herna\\Desktop\\hernan\\01_testando_download");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 }

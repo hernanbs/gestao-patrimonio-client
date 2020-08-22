@@ -55,13 +55,11 @@
          <artifactId>el-impl</artifactId>
          <version>2.2</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-api -->
 	<dependency>
 	    <groupId>com.sun.faces</groupId>
 	    <artifactId>jsf-api</artifactId>
 	    <version>2.2.20</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl -->
 	<dependency>
 	    <groupId>com.sun.faces</groupId>
 	    <artifactId>jsf-impl</artifactId>

@@ -14,11 +14,24 @@
 		<fieldset id="marca-panel" class="card" >
 			<div class="header-marca-panel">
 				<h1>Marcas</h1>
-				<div class="btn-add">
-					<h:button id="addLink" styleClass="btn btn-outline-purple input-group" value="Adicionar" outcome="#{marcaBean.handleToAddMarca()}" >
-						<h:graphicImage styleClass="input-group form-control input-group-purple" title="Icone Adicionar" value="../resources/icons/purple.svg" />
-					</h:button>	
-				</div>		
+				<div>
+					<div class="btn-download">
+						<h:form id="form-donwload-pdf-marca" >
+							<h:commandButton value="Baixar PDF"  actionListener="#{marcaBean.downloadFile}"/>
+						</h:form>			
+					</div>
+					<div class="btn-upload">
+						<h:form id="form-upload-pdf-marca" enctype="multipart/form-data">
+							<h:inputFile value="#{marcaBean.filePDF}" />
+							<h:commandButton value="Enviar"  actionListener="#{marcaBean.uploadFile}"/>
+						</h:form>
+					</div>
+					<div class="btn-add">
+						<h:button id="addLink" styleClass="btn btn-outline-purple input-group" value="Adicionar" outcome="#{marcaBean.handleToAddMarca()}" >
+							<h:graphicImage styleClass="input-group form-control input-group-purple" title="Icone Adicionar" value="../resources/icons/purple.svg" />
+						</h:button>	
+					</div>		
+				</div>
 			</div>
 			<div class="body-marca-panel">
 				<h:dataTable id="table-marca"  value ="#{marcaBean.listaMarca}" var="marca" class="table tableMarca">
